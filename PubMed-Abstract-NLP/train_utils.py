@@ -10,9 +10,6 @@ f1score = torchmetrics.F1Score(task = 'binary', num_classes=2).to(device)
 auroc = torchmetrics.AUROC(task='binary').to(device)
 
 
-
-
-
 def train_epoch(model, optim, loss_fn, train_loader, config, progress_bar):
     
     model.train()
@@ -72,7 +69,6 @@ def valid_epoch(model, loss_fn, valid_loader, config):
         precision.update(labels, preds)
         recall.update(labels, preds)
         f1score.update(labels, preds)
-        confusion_matrix.update(labels, preds)
         auroc.update(labels, preds)
         
     acc = accuracy.compute().cpu().numpy()

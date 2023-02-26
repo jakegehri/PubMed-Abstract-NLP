@@ -1,5 +1,5 @@
 from data_utils import make_dataloader
-from model_utils import PubMedBERT
+from models import *
 import torch
 from torch import nn
 from config import config
@@ -8,6 +8,9 @@ from train_utils import train_epoch, valid_epoch
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
+torch.manual_seed(42)
+np.random.seed(42)
+random.seed(42)
 
 def make(config):
     
@@ -68,4 +71,5 @@ def main(config=config):
     
     return results
 
+print(config)
 main(config)
